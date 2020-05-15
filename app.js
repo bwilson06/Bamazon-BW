@@ -47,6 +47,8 @@ function main(res) {
         .then(function (user) {
             var item_id = user.item_id
             var item_quantity = parseInt(user.item_quantity)
+            var cost = item_quantity * res[0].price
+            console.log(cost)
             connection.query(
                 `SELECT * FROM products WHERE item_id=${item_id}`,
                 function (err, res) {
@@ -54,9 +56,9 @@ function main(res) {
                     var lastChar = res[0].product_name.slice(-1)[0]
                     if (item_quantity < res[0].stock_quantity) {
                         if (item_quantity > 1 && lastChar != 's') {
-                            console.log(`\n\nYou purchased ${item_quantity} ${res[0].product_name}s!`);
+                            console.log(`\n\nYou purchased ${item_quantity} ${res[0].product_name}s!\nYour total is ${cost}`);
                         } else {
-                            console.log(`\n\nYou purchased ${item_quantity} ${res[0].product_name}!`);
+                            console.log(`\n\nYou purchased ${item_quantity} ${res[0].product_name}!\nYour total is ${cost}`);
                         }
 
                         connection.query(
