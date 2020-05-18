@@ -26,11 +26,21 @@ connection.connect(function (err) {
     });
 });
 
+function ResArr(id, name, department, price, quantity){
+    this.id = id
+    this.name = name 
+    this.department = department
+    this.price = price
+    this.quantity = quantity
+}
+
 function main(res) {
-    console.log("\n| ID | | Name | | Department | | Price | | Qunatity |\n\n-----------------------------------------------------")
-    res.forEach(function (element) {
-        console.log(`\n|${element.item_id}|    | ${element.product_name}|    | ${element.department_name} |    | ${element.stock_quantity} |\n\n`)
-    })
+   // console.log("\n| ID | | Name | | Department | | Price | | Qunatity |\n\n-----------------------------------------------------")
+    //res.forEach(function (element) {
+    //  console.log(`\n|${element.item_id}|    | ${element.product_name}|    | ${element.department_name} |    | ${element.stock_quantity} |\n\n`)
+    console.log(res)
+    console.table(res)
+  //  })
     inquirer
         .prompt([
             {
